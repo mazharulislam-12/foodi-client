@@ -4,7 +4,7 @@ import { TbPlayerPlayFilled } from "react-icons/tb";
 const Banner = () => {
     return (
         <div className='section-container bg-gradient-to-r from-[#FAFAFA] to-[#FCFCFC]'>
-            <div className='py-24 flex flex-col md:flex-row justify-between items-center '>
+            <div className='py-24 flex flex-col-reverse md:flex-row justify-between items-center '>
 
                 {/* text div */}
                 <div className='md:w-1/2 '>
@@ -19,6 +19,36 @@ const Banner = () => {
                 {/* imag div */}
                 <div className='md:w-1/2'>
                     <img src="/images/home/banner.png" alt="" />
+
+                    <div className='md:flex hidden items-center justify-between -mt-10  '>
+                        <div className='flex justify-between gap-3  text-left items-center rounded-3xl shadow-2xl py-2 px-3 '>
+                            <img src="/images/home/b-food1.png" alt="" className='rounded-2xl' />
+                            <div>
+                                <h5 className='font-medium text-xl'>Spicy noodles</h5>
+                                <span className='rating'>
+                                    <input type="radio" name="rating-4" className="mask mask-star-2 bg-yellow-500" checked />
+                                    <input type="radio" name="rating-4" className="mask mask-star-2 bg-yellow-500" checked />
+                                    <input type="radio" name="rating-4" className="mask mask-star-2 bg-yellow-500" checked />
+                                </span>
+                                <p className='text-red text-xl '>$18.05</p>
+                            </div>
+                        </div>
+                        {/* 2 */}
+                        <div className='md:flex hidden justify-between gap-3  text-left items-center rounded-3xl shadow-2xl py-2 px-3 '>
+                            <img src="/images/home/b-food2.png" alt="" className='rounded-2xl' />
+                            <div>
+                                <h5 className='font-medium text-xl'>Spicy noodles</h5>
+                                <span className='rating'>
+                                    <input type="radio" name="rating-4" className="mask mask-star-2 bg-yellow-500" checked />
+                                    <input type="radio" name="rating-4" className="mask mask-star-2 bg-yellow-500" checked />
+                                    <input type="radio" name="rating-4" className="mask mask-star-2 bg-yellow-500" checked />
+                                </span>
+                                <p className='text-red text-xl '>$18.05</p>
+                            </div>
+                        </div>
+                    </div>
+
+
                 </div>
 
             </div>
