@@ -17,12 +17,11 @@ const Categories = () => {
                 <h2 className='title'>Popular Catagories</h2>
             </div>
 
-
             {/* category cards */}
             <div className='flex flex-col sm:flex-row flex-wrap justify-around gap-8 items-center m-12 rounded-md'>
                 {
                     categoryItems.map((item, i) => (
-                        <div key={i} className='shadow-lg rounded-md bg-white py-6 px-5 w-72 mx-auto text-center cursor-pointer hover:-translate-y-4 duration-300 transition-all'>
+                        <div key={i} className='shadow-lg rounded-md bg-white py-6 px-5 w-64 mx-auto text-center cursor-pointer hover:-translate-y-4 duration-300 transition-all'>
                             <div className='flex w-full mx-auto items-center justify-center'>
                                 <img src={item.image} alt="" className='bg-[#C1F1C6] p-5 rounded-full w-28 h-28' />
                             </div>
@@ -34,9 +33,6 @@ const Categories = () => {
                     ))
                 }
             </div>
-
-
-
 
         </div>
     );
