@@ -27,12 +27,12 @@ const Navbar = () => {
 
 
     const navItems = <>
-        <li className='font-medium text-lg'><a>Home</a></li>
+        <li className='font-medium text-lg' href="/" ><a>Home</a></li>
         <li className='font-medium text-lg'>
             <details>
                 <summary>Menu</summary>
                 <ul className="p-2">
-                    <li><a>All</a></li>
+                    <li><a href="/menu">All</a></li>
                     <li><a>Salad</a></li>
                     <li><a>Pizza</a></li>
                 </ul>
