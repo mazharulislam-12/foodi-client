@@ -46,12 +46,14 @@ const Testomonials = () => {
                                 </div>
                             </div>
                         </div>
-
                     </div>
                 </div>
+                
             </div>
         </div>
     )
 }
 
 export default Testomonials
+
+
