@@ -35,6 +35,12 @@ const Menu = () => {
         setSelectedCategory(category);
     }
 
+    // show all data function
+    const showAll = () =>{
+        setFilteredItems(menu)
+        setSelectedCategory("all")
+    }
+
     
 
 
