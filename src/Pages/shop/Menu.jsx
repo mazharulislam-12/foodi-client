@@ -23,7 +23,7 @@ const Menu = () => {
                 console.log(error);
             }
         }
-// call the function
+        // call the function
         fetchData()
 
     }, [])
@@ -36,12 +36,36 @@ const Menu = () => {
     }
 
     // show all data function
-    const showAll = () =>{
+    const showAll = () => {
         setFilteredItems(menu)
         setSelectedCategory("all")
     }
 
-    
+    // sorting base on A-Z , Z-A,  Low- High price
+    const handleSortChange = (option) => {
+        setSortOption(option)
+
+        let sortedItems = [...filteredItems]
+
+        // logic
+        switch (option) {
+            case "A-Z":
+                sortedItems.sort((a, b) => a.name.localeCompare(b.name))
+                break;
+            case "Z-A":
+                sortedItems.sort((a, b) => b.name.localeCompare(a.name))
+                break;
+            case "low-to-high":
+                sortedItems.sort((a, b) => a.price - b.price)
+                break;
+            case "high to low":
+                sortedItems.sort((a, b) => b.price - a.price)
+                break;
+            default:
+                break;
+        }
+        setFilteredItems(sortedItems);
+    }
 
 
 
