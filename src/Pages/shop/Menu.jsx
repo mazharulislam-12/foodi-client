@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import Cards from "../../component/Cards";
 import "./Menu.css";
 import { FaFilter } from "react-icons/fa";
@@ -8,15 +8,16 @@ const Menu = () => {
   const [filteredItems, setFilteredItems] = useState([]);
   const [selectedCategory, setSelectedCategory] = useState("all");
   const [sortOption, setSortOption] = useState("default");
+  const [currentPage, setCurrentPage] = useState(1);
+  const [itemsPerPage] = useState(6); // Number of items to display per page
 
   // loading data
   useEffect(() => {
-    //fetch data form the backend
+    //fetch data from the backend
     const fetchData = async () => {
       try {
         const response = await fetch("menu.json");
         const data = await response.json();
-        // console.log(data);
         setMenu(data);
         setFilteredItems(data);
       } catch (error) {
@@ -35,12 +36,14 @@ const Menu = () => {
         : menu.filter((item) => item.category === category);
     setFilteredItems(filtered);
     setSelectedCategory(category);
+    setCurrentPage(1); // Reset to first page when category changes
   };
 
   // show all data function
   const showAll = () => {
     setFilteredItems(menu);
     setSelectedCategory("all");
+    setCurrentPage(1); // Reset to first page when showing all items
   };
 
   // sorting based on A-Z, Z-A, Low-High price
@@ -59,14 +62,23 @@ const Menu = () => {
       case "low-to-high":
         sortedItems.sort((a, b) => a.price - b.price);
         break;
-      case "high to low":
+      case "high-to-low":
         sortedItems.sort((a, b) => b.price - a.price);
         break;
       default:
         break;
     }
     setFilteredItems(sortedItems);
+    setCurrentPage(1); // Reset to first page when sorting changes
   };
+
+  // Logic for pagination
+  const indexOfLastItem = currentPage * itemsPerPage;
+  const indexOfFirstItem = indexOfLastItem - itemsPerPage;
+  const currentItems = filteredItems.slice(indexOfFirstItem, indexOfLastItem);
+
+  // Change page
+  const paginate = (pageNumber) => setCurrentPage(pageNumber);
 
   return (
     <div>
@@ -138,8 +150,8 @@ const Menu = () => {
           </div>
 
           {/* sorting filtering */}
-          <div className="flex ">
-            <div className="bg-black p-2 ">
+          <div className="flex">
+            <div className="bg-black p-2">
               <FaFilter className="h-4 w-4 text-white" />
             </div>
 
@@ -162,8 +174,21 @@ const Menu = () => {
 
         {/* product card */}
         <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-4">
-          {filteredItems.map((item) => (
+          {currentItems.map((item) => (
             <Cards key={item._id} item={item} />
+          ))}
+        </div>
+
+        {/* Pagination */}
+        <div className="flex justify-center mt-4">
+          {Array.from({ length: Math.ceil(filteredItems.length / itemsPerPage) }, (_, i) => (
+            <button
+              key={i}
+              onClick={() => paginate(i + 1)}
+              className={`pagination-btn rounded-full text-xl border flex mr-4 bg-amber-400  ${currentPage === i + 1 ? 'active' : ''}`}
+            >
+              {i + 1}
+            </button>
           ))}
         </div>
       </div>
